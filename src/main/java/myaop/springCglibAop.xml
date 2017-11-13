@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="logInterceptor" class="myaop.LoggingInterceptor"></bean>
+	<bean id="anotherInterceptor" class="myaop.AnotherInterceptor"></bean>
+
+	<bean id="targetObj" class="myaop.Target"></bean>
+
+	<bean id="cglibProxy" class="myaop.CglibProxy_">
+		<property name="target" ref="targetObj"></property>
+		<property name="interceptorChain">
+			<list>
+				<ref bean="logInterceptor"/>
+				<ref bean="anotherInterceptor"/>
+			</list>
+		</property>
+	</bean>
+</beans>

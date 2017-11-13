@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd  
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">  
+   
+   <!-- 开始spring mvc的注解 -->
+	<mvc:annotation-driven>
+	  <mvc:message-converters register-defaults="true">
+		
+		 	<bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		 		<property name="supportedMediaTypes" value="text/html;charset=UTF-8"></property>
+		 	</bean>		
+		 	<bean class = "org.springframework.http.converter.StringHttpMessageConverter">  
+		 		 <property name="supportedMediaTypes" value="text/html;charset=UTF-8"></property>
+		 	</bean>							
+      </mvc:message-converters>	
+	</mvc:annotation-driven>
+
+ <!-- 自动扫描,完成bean创建和依赖注入 -->  
+  <context:component-scan base-package="com.*"/> 
+  
+  <!--
+  <mvc:interceptors>
+ 	 <mvc:interceptor>
+  		<mvc:mapping path="/**/*.shtml" />
+		<bean class="com.film.interceptor.AuthorityInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	静态资源的访问 ，防止被拦截
+	<mvc:resources location="/js/**" mapping="/js/" ></mvc:resources>
+	<mvc:resources location="/css/**" mapping="/css/" ></mvc:resources>
+	<mvc:resources location="/img/**" mapping="/img/" ></mvc:resources>
+ 
+    
+  --><!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->  
+  <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/> 
+    
+  --><!-- 视图解析器 -->  
+  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>  
+    <property name="prefix" value="/WEB-INF/webpage/"/>  
+    <property name="suffix" value=".jsp"/>  
+  </bean>  
+    
+    
+	
+  	<!-- 上传文件时需要做的配置 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000"></property>
+	</bean>
+</beans>  

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+      
+
+
+	<bean id="employee" class="springAop4xml.CommonEmployee">
+		<property name="name" value="good"></property>
+	</bean>
+	<bean id="advice" class="springAop4xml.Logger" />
+	<bean id="advice2" class="springAop4xml.Logger2" />
+	<bean id="advice3" class="springAop4xml.AgumentInterceptor" />
+	<bean id="advice4" class="springAop4xml.HelloSpeaker" />
+	<aop:config>
+		<aop:pointcut id="pointcut" expression="execution(* springAop4xml.CommonEmployee.sign*(..))"/>
+		<aop:advisor order="2" advice-ref="advice3" pointcut-ref="pointcut"/>
+		<!-- aop:advisor必须放到aop:aspect之前，执行里面的proceed（）方法时，会先执行其他的切面，执行一遍就会知道运行过程 -->
+		<!-- 
+			输出args[i]，长度为：0
+			the method is : signIn
+			logBefore:现在时间是:Tue Dec 23 15:20:26 CST 2014
+			logAround开始:现在时间是:Tue Dec 23 15:20:26 CST 2014
+			good已经签到了...........
+			logAfter:现在时间是:Tue Dec 23 15:20:26 CST 2014
+			logAround结束:现在时间是:Tue Dec 23 15:20:26 CST 2014
+			the result is :null
+		 -->
+		<aop:aspect order="1" ref="advice" id="aspect1">
+ 			<!--<aop:before method="logBefore" pointcut-ref="pointcut" />-->
+			<!--<aop:after method="logAfter" pointcut-ref="pointcut" /> -->
+ 			<aop:around method="logAround" pointcut-ref="pointcut" /> 
+		</aop:aspect>
+		<!--
+		
+		
+		
+		<aop:aspect ref="advice2" id="aspect2">    可以定义多个切面，按照定义顺序执行 
+			<aop:before method="logBefore" pointcut-ref="pointcut" />
+			<aop:after method="logAfter" pointcut-ref="pointcut" />
+			<aop:around method="logAround" pointcut-ref="pointcut" />
+		</aop:aspect>
+			
+		
+		<aop:aspect ref="advice4" id="aspect4">   随意定义切面中的通知，可以随意定义通知个数 
+			<aop:before method="sayHello" pointcut-ref="pointcut" />
+		</aop:aspect>  
+		
+	
+		
+		-->
+	</aop:config>
+</beans>
