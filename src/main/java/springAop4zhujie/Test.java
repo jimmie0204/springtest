@@ -1,6 +1,7 @@
 package springAop4zhujie;
 
-import org.springframework.context.ApplicationContext;  
+import org.springframework.aop.framework.AopContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;  
   
   
@@ -9,6 +10,9 @@ public class Test {
         ApplicationContext act = new ClassPathXmlApplicationContext("springAop4zhujie/springAop4zhujie.xml");  
         CommonEmployee e = (CommonEmployee)act.getBean("employee");  //需要代理的类为代理类注入到容器
         System.out.println(e);
+
+        Object obj = e.getProxyObject();
+        System.out.println(obj);
         HelloService e2 = (HelloService)act.getBean("helloService");  //不需要代理的类为原类注入到容器
         System.out.println(e2);
         e.signIn("liyp");  

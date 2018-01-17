@@ -25,5 +25,5 @@
 		<aop:advisor advice-ref="advice" pointcut-ref="pointcut"/>
 		</aop:config> 这样也可以-->
             <!-- 声明为注释@Aspect切面的bean 创建代理织入切面-->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
 </beans>

@@ -26,20 +26,20 @@ public class AspectJLogger {
     /** 
      * 必须为final String类型的,注解里要使用的变量只能是静态常量类型的 
      */  
-    public static final String EDP = "execution(* springAop4zhujie.CommonEmployee.*(..))";  
+    public static final String EDP = "execution(* springAop4zhujie.CommonEmployee.*(..))";
       
     @Before(EDP)    //spring中Before通知  
     public void logBefore() {  
         System.out.println("logBefore:现在时间是:"+new Date());  
     }  
       
-    @After(EDP)    //spring中After通知  
+    @After(EDP)    //spring中After通知
     public void logAfter() {  
         System.out.println("logAfter:现在时间是:"+new Date());  
     }  
       
     @Around(EDP)   //spring中Around通知  
-    public Object logAround(ProceedingJoinPoint joinPoint) {  
+    public Object logAround(ProceedingJoinPoint joinPoint) {
         System.out.println("logAround开始:现在时间是:"+new Date()); //方法执行前的代理处理  
         Object[] args = joinPoint.getArgs(); 
         for(int i=0;i<args.length;i++){

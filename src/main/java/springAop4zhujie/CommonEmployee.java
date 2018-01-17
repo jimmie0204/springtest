@@ -1,5 +1,6 @@
 package springAop4zhujie;
 
+import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 
 @Service(value="employee")
@@ -9,6 +10,10 @@ public class CommonEmployee implements Employee{
 
 	public String getName() {
 		return name;
+	}
+
+	public Object getProxyObject(){
+		return AopContext.currentProxy();
 	}
 
 	public void setName(String name) {
