@@ -17,7 +17,7 @@ public class AgumentInterceptor implements MethodInterceptor {
 			
 		}
 		System.out.println("the method is : " + name);
-		Object result = methodInvocation.proceed();//会先执行其他的切面
+		Object result = methodInvocation.proceed();
 		System.out.println("the result is :"+result);
 		return result;
 	}

@@ -3,6 +3,8 @@ package test.zhuru;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class Zeus {
 
@@ -13,7 +15,14 @@ public class Zeus {
 		return name;
 	}
 
-	public void setName(String name) {//Ã»ÓĞset·½·¨Ò²ÄÜ×¢Èë
+	public void setName(String name) {//Ã»ï¿½ï¿½setï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½×¢ï¿½ï¿½
 		this.name = name;
+	}
+
+	@PostConstruct
+	private void initZeus(){
+
+		name = "jimmie";
+		System.out.println("========PostConstructæ‰§è¡Œåˆå§‹åŒ–===========");
 	}
 }

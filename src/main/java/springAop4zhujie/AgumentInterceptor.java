@@ -3,9 +3,10 @@ package springAop4zhujie;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
-//@Component(value="advice")
-//@Aspect
+@Component(value="advice")
+@Aspect
 public class AgumentInterceptor implements MethodInterceptor {
 	public Object invoke(MethodInvocation methodInvocation) throws Throwable {
 		String name = null;

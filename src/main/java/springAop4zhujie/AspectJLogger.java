@@ -14,6 +14,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;  
 import org.aspectj.lang.annotation.Before;  
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
   
 /** 
@@ -21,19 +22,20 @@ import org.springframework.stereotype.Component;
  * 不对这个类本身进行动态代理 
  */
 @Component
-@Aspect    
+@Aspect
+@Order(1)
 public class AspectJLogger {  
     /** 
      * 必须为final String类型的,注解里要使用的变量只能是静态常量类型的 
      */  
     public static final String EDP = "execution(* springAop4zhujie.CommonEmployee.*(..))";
       
-    @Before(EDP)    //spring中Before通知  
+//    @Before(EDP)    //spring中Before通知
     public void logBefore() {  
         System.out.println("logBefore:现在时间是:"+new Date());  
     }  
       
-    @After(EDP)    //spring中After通知
+//    @After(EDP)    //spring中After通知
     public void logAfter() {  
         System.out.println("logAfter:现在时间是:"+new Date());  
     }  
@@ -61,7 +63,7 @@ public class AspectJLogger {
         return obj;  
     }
     
-    @AfterReturning(pointcut=EDP,returning="qqobj")//获取方法返回参数必须要加（returning="qqobj"），qqobj为@Around的返回值,名称随意写
+//    @AfterReturning(pointcut=EDP,returning="qqobj")//获取方法返回参数必须要加（returning="qqobj"），qqobj为@Around的返回值,名称随意写
     public void logAfterReturn(JoinPoint joinPoint, Object qqobj) {
     	Signature  dd = joinPoint.getSignature();
     	System.out.println("测试AfterReturning的joinPoint方法:===="+MethodSignature.class.cast(dd).getMethod());
@@ -76,7 +78,7 @@ public class AspectJLogger {
          System.out.println("@AfterReturning：被织入的目标对象为：" + joinPoint.getTarget());*/
     }
     
-    @AfterThrowing(pointcut=EDP, throwing="e")
+//    @AfterThrowing(pointcut=EDP, throwing="e")
     public void throwtest(JoinPoint joinPoint, Throwable e) throws Exception{
     	Signature  dd = joinPoint.getSignature();
     	System.out.println("测试AfterThrowing的joinPoint方法:===="+MethodSignature.class.cast(dd).getMethod());

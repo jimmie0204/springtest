@@ -8,7 +8,7 @@
 
 	<context:component-scan base-package="factoryBean" />
 	
-	<bean id="car" class="factoryBean.MyCarFactoryBean">  
+	<bean id="car" class="factoryBean.MyCarFactoryBean" scope="singleton">
 		   <property name="make" value="make"/>  
 		   <property name="year"  value="0"/>  
 	</bean>  

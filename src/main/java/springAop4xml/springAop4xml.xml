@@ -27,18 +27,11 @@
 	<aop:config>
 		<aop:pointcut id="pointcut" expression="execution(* springAop4xml.CommonEmployee.sign*(..))"/>
 		<aop:advisor order="2" advice-ref="advice3" pointcut-ref="pointcut"/>
-		<!-- aop:advisor必须放到aop:aspect之前，执行里面的proceed（）方法时，会先执行其他的切面，执行一遍就会知道运行过程 -->
-		<!-- 
-			输出args[i]，长度为：0
-			the method is : signIn
-			logBefore:现在时间是:Tue Dec 23 15:20:26 CST 2014
-			logAround开始:现在时间是:Tue Dec 23 15:20:26 CST 2014
-			good已经签到了...........
-			logAfter:现在时间是:Tue Dec 23 15:20:26 CST 2014
-			logAround结束:现在时间是:Tue Dec 23 15:20:26 CST 2014
-			the result is :null
+		<!-- aop:advisor必须放到aop:aspect之前-->
+		<!--
+			根据各个切面的order顺序来执行，越小优先级越高
 		 -->
-		<aop:aspect order="1" ref="advice" id="aspect1">
+		<aop:aspect order="10" ref="advice" id="aspect1">
  			<!--<aop:before method="logBefore" pointcut-ref="pointcut" />-->
 			<!--<aop:after method="logAfter" pointcut-ref="pointcut" /> -->
  			<aop:around method="logAround" pointcut-ref="pointcut" /> 

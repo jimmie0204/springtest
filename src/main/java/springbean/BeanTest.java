@@ -80,4 +80,13 @@ public class BeanTest {
 		
 	}
 
+	@Test
+	public void test(){
+		ApplicationContext ac = new  ClassPathXmlApplicationContext("/springbean/spring.xml");
+
+		C bean = ac.getBean(C.class);
+		bean.hello();
+
+	}
+
 }
