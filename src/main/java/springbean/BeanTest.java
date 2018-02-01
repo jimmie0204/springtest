@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
+
 public class BeanTest {
 
 	
@@ -86,6 +88,13 @@ public class BeanTest {
 
 		C bean = ac.getBean(C.class);
 		bean.hello();
+
+	}
+
+	@Test
+	public void testOrder() throws IOException {
+		ApplicationContext ac = new  ClassPathXmlApplicationContext("/springbean/spring.xml");
+
 
 	}
 

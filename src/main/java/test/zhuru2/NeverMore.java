@@ -13,7 +13,7 @@ public class NeverMore {
         return price;  
     }  
 
-    public void setPrice(double price) {  //没有set方法也能注入
+    public void setPrice(double price) {  //娌℃湁set鏂规硶涔熻兘娉ㄥ叆
         this.price = price;  
         System.out.println("**************** price: " + price);  
     }  
