@@ -4,7 +4,7 @@
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
     <!--<configuration>-->
     <!--<custom-converters>-->
-    <!--<converter type="com.meituan.travel.quark.common.dozer.IntegerLongConverter">-->
+    <!--<converter type="com.xxx.xxx.xx.common.dozer.IntegerLongConverter">-->
     <!--<class-a>java.lang.Integer</class-a>-->
     <!--<class-b>java.lang.Long</class-b>-->
     <!--</converter>-->
