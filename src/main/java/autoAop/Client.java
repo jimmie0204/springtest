@@ -1,5 +1,7 @@
 package autoAop;
 
+import org.springframework.aop.support.AopUtils;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
@@ -26,8 +28,23 @@ public class Client
          */
         Subject subject = (Subject)Proxy.newProxyInstance(handler.getClass().getClassLoader(), realSubject
                 .getClass().getInterfaces(), handler);
-        
+
+        //同一个classloader和interface代理类会从缓存中返回
+        /*Subject realSubject2 = new RealSubject();
+        DynamicProxy handler2 = new DynamicProxy(realSubject);
+        Subject subject2 = (Subject)Proxy.newProxyInstance(handler2.getClass().getClassLoader(), realSubject2
+                .getClass().getInterfaces(), handler2);*/
+
+        System.out.println(AopUtils.getTargetClass(subject));
+        System.out.println(subject.getClass().getCanonicalName());
         System.out.println(subject.getClass().getName());
+        System.out.println(subject.getClass().getSimpleName());
+/*
+        System.out.println(AopUtils.getTargetClass(subject2));
+        System.out.println(subject2.getClass().getCanonicalName());
+        System.out.println(subject2.getClass().getName());
+        System.out.println(subject2.getClass().getSimpleName());*/
+
         subject.rent();
         //subject.hello("world");
     }

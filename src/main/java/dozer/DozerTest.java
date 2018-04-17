@@ -16,6 +16,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class DozerTest {
 
+    /**
+     * 继承的可以直接转，大小写不一样的属性不能转
+     */
     @Test
     public void test1(){
         ApplicationContext context = new ClassPathXmlApplicationContext("/dozer/spring-dozer.xml");
@@ -24,7 +27,7 @@ public class DozerTest {
         car.setYear(2);
         car.setMake("sss");
         Car2 car2 = dozerMapper.map(car, Car2.class);
-        System.out.println(car2.getMake());
+        System.out.println(car2.getMake()+"===="+car2.getYear());
 
     }
 }

@@ -7,7 +7,7 @@ package dozer;/**
  * @create 2018-02-01 下午3:08
  */
 
-public class Car2 {
+public class Car2 extends PCar{
     private  String  make;
 
     public Car2(){

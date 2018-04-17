@@ -20,6 +20,8 @@ public class CglibProxy implements MethodInterceptor {
 	// 实现MethodInterceptor接口(public interface MethodInterceptor extends Callback)方法
 	public Object intercept(Object obj, Method method, Object[] args,
 			MethodProxy proxy) throws Throwable {
+		System.out.println("========>"+obj.getClass());
+		System.out.println("========>"+args);
 		System.out.println("前置代理");
 		// 通过代理类调用父类中的方法
 		Object result = proxy.invokeSuper(obj, args);
