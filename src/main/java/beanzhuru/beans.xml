@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd"
+	   default-autowire="byName">
+
+
+	<bean id="car2" class="beanzhuru.Car">
+		<property name="id" value="2007"></property>
+		<property name="carName" value="奥迪"></property>
+	</bean>
+	<!-- 自动装配 byName 来找car -->
+	<bean id="car" class="beanzhuru.Car">
+		<property name="id" value="2009"></property>
+		<property name="carName" value="奥拓"></property>
+	</bean>
+
+
+	<bean id="employee" class="beanzhuru.Employee">
+		<property name="id" value="10080"></property>
+		<property name="name" value="贾经理"></property>
+		<property name="sex" value="男"></property>
+
+
+	</bean>
+
+</beans> 
